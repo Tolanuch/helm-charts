@@ -1,0 +1,23 @@
+Secret:
+  TestEnvSecret: whatever-value
+
+ConfigMap:
+  Color: black
+  Hair: long
+  Legs: 2
+  Volume:
+    Name: configmap-volume
+    MountPath: /etc/my_folder
+
+LogsPod:
+  Volumes:
+    Name: general-logs
+    PutMountPath: /mnt/logs
+    GetMountPath: /var/log/container
+
+DefaultImageName: alpine
+MyImageName: tolanuch/date-logger:1.0.0
+
+RestartPolicy: Never
+
+MaxUnavailable: 1

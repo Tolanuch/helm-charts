@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: logs-pod-{{ .Release.Name }}
+spec:
+  restartPolicy: {{ .Values.RestartPolicy }}
+  containers:
+    - name: put-log-{{ .Release.Name }}
+      image: {{ .Values.DefaultImageName }}
+      command: ['/bin/sh', '-c', 'while sleep 1m; do echo $(date) >> {{ .Values.LogsPod.Volumes.PutMountPath }}/container.log; done']
+      volumeMounts:
+        - name: {{ .Values.LogsPod.Volumes.Name }}
+          mountPath: {{ .Values.LogsPod.Volumes.PutMountPath }}
+    - name: get-log-{{ .Release.Name }}
+      image: {{ .Values.DefaultImageName }}
+      command: ['/bin/sh', '-c', 'sleep 65s; tail -f {{ .Values.LogsPod.Volumes.GetMountPath }}/container.log']
+      volumeMounts:
+        - name: {{ .Values.LogsPod.Volumes.Name }}
+          mountPath: {{ .Values.LogsPod.Volumes.GetMountPath }}
+  volumes:
+    - name: {{ .Values.LogsPod.Volumes.Name }}
+      emptyDir: {}

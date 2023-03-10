@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testing-pod-{{ .Release.Name }}
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: {{ .Values.MaxUnavailable }}
+  selector:
+    matchLabels:
+      app: testing-pod-{{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: testing-pod-{{ .Release.Name }}
+    spec:
+      containers:
+        - name: log-date-host-{{ .Release.Name }}
+          image: {{ .Values.MyImageName }}
+      imagePullSecrets:
+        - name: very-secured-secret
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  app: testing-pod-{{ .Release.Name }}
