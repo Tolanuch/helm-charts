@@ -3,6 +3,16 @@ entries:
   my-own-chart:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-03-10T15:04:04.923455055Z"
+    description: A Helm chart for Kubernetes
+    digest: 4a3c523a4f356be31d7fc4ea856efb1d611984f8727d67dc3c9b19bdf6e46590
+    name: my-own-chart
+    type: application
+    urls:
+    - https://github.com/Tolanuch/helm-charts/releases/download/my-own-chart-0.1.2/my-own-chart-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-03-10T14:56:16.660181807Z"
     description: A Helm chart for Kubernetes
     digest: c69236698dba5c787bd538ff10bc7cfb9acb93cdd2b729fe6156333c9919d281
@@ -21,4 +31,4 @@ entries:
     urls:
     - https://github.com/Tolanuch/helm-charts/releases/download/my-own-chart-0.1.0/my-own-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2023-03-10T14:56:16.660189206Z"
+generated: "2023-03-10T15:04:04.923466157Z"
